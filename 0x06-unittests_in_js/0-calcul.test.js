@@ -1,38 +1,36 @@
-const calculateNumber = require("./0-calcul.js");
-
 const assert = require('assert');
+const calculateNumber = require('./0-calcul');
 
-describe ('test suit', () => {
-  it('test add method normal test', () => {
-    assert.strictEqual(calculateNumber(2.0, 3.0), 5);
+describe('calculateNumber', () => {
+  it('floating point whole numbers', () => {
+    assert.strictEqual(calculateNumber(1.0, 2.0), 3);
   });
 
-
-  it('test add method floats', () => {
-    assert.strictEqual(calculateNumber(2.1, 2,2), 4);
+  it('rounding down b\'s floating point fractional number', () => {
+    assert.strictEqual(calculateNumber(1.0, 2.4), 3);
   });
 
-  it('test add method missing argument', () => {
-    assert.ok(isNaN(calculateNumber(3)));
+  it('rounding down a and b\'s floating point fractional number', () => {
+    assert.strictEqual(calculateNumber(1.4, 2.4), 3);
   });
 
-  it('test add floats with one rounded', () => {
-    assert.strictEqual(calculateNumber(2.9, 2), 5);
+  it('rounding down a\'s floating point fractional number', () => {
+    assert.strictEqual(calculateNumber(1.4, 2.0), 3);
   });
 
-  it('test add floats with 2 rounded', () => {
-    assert.strictEqual(calculateNumber(2.9, 2.9), 6);
+  it('rounding up b\'s floating point fractional numbers', () => {
+    assert.strictEqual(calculateNumber(1.0, 2.5), 4);
   });
 
-  it('test add floats with one rounded', () => {
-    assert.strictEqual(calculateNumber(2, 3.8), 6);
+  it('rounding up a and b\'s floating point fractional numbers', () => {
+    assert.strictEqual(calculateNumber(2.6, 2.5), 6);
   });
 
-  it('test add floats with 2 rounded 2 fraction', () => {
-    assert.strictEqual(calculateNumber(2.99, 2.33), 5);
+  it('rounding up a\'s floating point fractional numbers', () => {
+    assert.strictEqual(calculateNumber(2.6, 2.0), 5);
   });
 
-  it('test add floats with more the fraction', () => {
-    assert.strictEqual(calculateNumber(2.9999999, 3.109323), 6);
+  it('rounding down a and b floating point fractional numbers with trailing 9\'s', () => {
+    assert.strictEqual(calculateNumber(2.499999, 3.499999), 5);
   });
 });
